@@ -1,11 +1,17 @@
 from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+url = "http://www.google.com"
+xpath = "//fieldset/input[@name='q']"
 
 driver = webdriver.Chrome()
-driver.get("http://www.google.com")
-ele = driver.find_element_by_xpath("//select[@name='name']")
-options = ele.find_element_by_tag_name("option")
-for opt in options:
-    print(opt.get_atrribute("value"))
-    opt.click()
+driver.get(url)
+'''
+ele = driver.find_element_by_xpath("//input[@id ='id-search-field']")
 
-driver.close()
+#ele = driver.find_element_by_id("id-search-field")
+print(ele)
+'''
+ele = driver.find_element_by_xpath("//div[@id='sfdiv']//input[@class='gsfi']")
+ele.send_keys('cute dog')
+select = Select(driver.find_element_by_xpath("//center/input[@type='submit']"))
+driver.find_element_by_xpath("//center/input[@type='submit']").click()
